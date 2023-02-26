@@ -15,11 +15,10 @@ router.get('/', async (req,res,next) => {
     });
 })
 
-router.post('/', async (req,res,next) => {
+router.post('/:orderID', async (req,res,next) => {
     const order = new Order({
-        _id : new mongoose.Types.ObjectId(),
-        name : req.body.name,
-        price : req.body.price
+        _id : req.params.orderID,
+        history : req.body.history
     });
     await order.save().then(result => {
         console.log(result);
